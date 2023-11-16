@@ -13,7 +13,7 @@ import chess.ChessPosition;
 public class Program {
 
 	public static void main(String[] args) {
-		
+
 		Scanner sc = new Scanner(System.in);
 		ChessMatch chessMatch = new ChessMatch();
 		List<ChessPiece> captured = new ArrayList<>();
@@ -22,30 +22,30 @@ public class Program {
 			try {
 				UI.clearScreen();
 				UI.printMatch(chessMatch, captured);
-				
-				//le qual peça usuário quer mover
+
+				// le qual peça usuário quer mover
 				System.out.println();
 				System.out.print("Source: ");
 				ChessPosition source = UI.readChessPosition(sc);
-				
+
 				boolean[][] possibleMoves = chessMatch.possibleMoves(source);
 				UI.clearScreen();
-				UI.printBoard(chessMatch.getPieces(), possibleMoves);//print the possible moves with different color
-				
-				//le para onde usuário deseja mover peça
+				UI.printBoard(chessMatch.getPieces(), possibleMoves);// print the possible moves with different color
+
+				// le para onde usuário deseja mover peça
 				System.out.println();
 				System.out.print("Target: ");
 				ChessPosition target = UI.readChessPosition(sc);
-				
+
 				ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
-				
-				if(capturedPiece != null) {
+
+				if (capturedPiece != null) {
 					captured.add(capturedPiece);
 				}
-			}catch(ChessException e) {
+			} catch (ChessException e) {
 				System.out.println(e.getMessage());
 				sc.nextLine();
-			}catch(InputMismatchException e) {
+			} catch (InputMismatchException e) {
 				System.out.println(e.getMessage());
 				sc.nextLine();
 			}
